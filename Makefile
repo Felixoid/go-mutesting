@@ -44,15 +44,14 @@ install-tools:
 	go install golang.org/x/tools/cmd/stringer
 
 	# linting
-	go install golang.org/x/lint/golint/...
-	go install github.com/kisielk/errcheck/...
-	go install honnef.co/go/tools/...
+	go install golang.org/x/lint/golint@latest
+	go install github.com/kisielk/errcheck@latest
+	go install honnef.co/go/tools/cmd/staticcheck@latest
 
 	# code coverage
-	go install golang.org/x/tools/cmd/cover
-	go install github.com/onsi/ginkgo/ginkgo/...
-	go install github.com/modocache/gover/...
-	go install github.com/mattn/goveralls/...
+	go install github.com/onsi/ginkgo/ginkgo@latest
+	go install github.com/modocache/gover@latest
+	go install github.com/mattn/goveralls@latest
 .PHONY: install-tools
 
 lint:
