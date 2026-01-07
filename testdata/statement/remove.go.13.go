@@ -41,7 +41,7 @@ func foo() int {
 		n--
 	default:
 		n = 0
-		fmt.Println(n)
+		_, _ = fmt.Println, n
 		func() {}()
 	}
 

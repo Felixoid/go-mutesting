@@ -13,7 +13,8 @@ func foo() int {
 
 	for i := 0; i < 3; i++ {
 		if i == 0 {
-			n++
+			_ = n
+
 		} else if i == 1 {
 			n += 2
 		} else {

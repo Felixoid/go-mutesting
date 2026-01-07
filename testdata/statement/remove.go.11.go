@@ -38,7 +38,8 @@ func foo() int {
 	case n < 20:
 		n++
 	case n > 20:
-		n--
+		_ = n
+
 	default:
 		n = 0
 		fmt.Println(n)

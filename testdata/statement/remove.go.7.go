@@ -15,7 +15,8 @@ func foo() int {
 		if i == 0 {
 			n++
 		} else if i == 1 {
-			n += 2
+			_ = n
+
 		} else {
 			n += 3
 		}

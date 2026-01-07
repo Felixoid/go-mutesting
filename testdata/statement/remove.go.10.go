@@ -36,7 +36,8 @@ func foo() int {
 
 	switch {
 	case n < 20:
-		n++
+		_ = n
+
 	case n > 20:
 		n--
 	default:

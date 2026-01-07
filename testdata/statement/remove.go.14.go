@@ -42,7 +42,7 @@ func foo() int {
 	default:
 		n = 0
 		fmt.Println(n)
-		func() {}()
+
 	}
 
 	var x = 0
