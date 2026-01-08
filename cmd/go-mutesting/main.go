@@ -10,7 +10,6 @@ import (
 	"go/token"
 	"go/types"
 	"io"
-	"io/ioutil"
 	"os"
 	"os/exec"
 	"path/filepath"
@@ -202,12 +201,12 @@ func mainCmd(args []string) int {
 	// if any blacklisted files are passed in, returns error
 	if len(opts.Files.Blacklist) > 0 {
 		for _, f := range opts.Files.Blacklist {
-			c, err := ioutil.ReadFile(f)
+			c, err := os.ReadFile(f)
 			if err != nil {
 				return exitError("Cannot read blacklist file %q: %v", f, err)
 			}
 
-			for _, line := range strings.Split(string(c), "\n") {
+			for line := range strings.SplitSeq(string(c), "\n") {
 				if line == "" {
 					continue
 				}
@@ -249,7 +248,7 @@ MUTATOR:
 	}
 
 	// creates temporary directory to save mutations into
-	tmpDir, err := ioutil.TempDir("", "go-mutesting-")
+	tmpDir, err := os.MkdirTemp("", "go-mutesting-")
 	if err != nil {
 		panic(err)
 	}
@@ -547,7 +546,7 @@ func saveAST(mutationBlackList map[string]struct{}, file string, fset *token.Fil
 		return "", false, err
 	}
 
-	err = ioutil.WriteFile(file, src, 0666)
+	err = os.WriteFile(file, src, 0666)
 	if err != nil {
 		return "", false, err
 	}

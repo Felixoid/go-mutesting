@@ -10,7 +10,6 @@ import (
 	"strings"
 
 	"github.com/osmosis-labs/go-mutesting/mutator"
-	"github.com/zimmski/go-mutesting"
 )
 
 // CountWalk returns the number of corresponding mutations for a given mutator.
@@ -49,7 +48,7 @@ func (w *countWalk) Visit(node ast.Node) ast.Visitor {
 // MutateWalk mutates the given node with the given mutator returning a channel to control the mutation steps.
 //
 // It traverses the AST of the given node and calls the method `Check` of the given mutator to verify that a node can be mutated by the mutator.
-// If a node can be mutated the method `Mutate` of the given mutator is executed with the node and the control channel. 
+// If a node can be mutated the method `Mutate` of the given mutator is executed with the node and the control channel.
 //
 // After completion of the traversal the control channel is closed.
 func MutateWalk(pkg *types.Package, info *types.Info, node ast.Node, m mutator.Mutator) chan bool {
@@ -125,25 +124,27 @@ func (w *printWalk) Visit(node ast.Node) ast.Visitor {
 	return w
 }
 
-// Gets full AST of input node and its children and returns a string parsed version
+// GetNodeASTString Gets full AST of input node and its children and returns a string parsed version
 func GetNodeASTString(node ast.Node) string {
 	// save original stdOut
 	oldOut := os.Stdout
 	r, w, _ := os.Pipe()
 	os.Stdout = w
 
-	mutesting.PrintWalk(node)
+	PrintWalk(node)
 
 	outC := make(chan string)
 	// move output to a separate goroutine to not block stdOut indefinitely
 	go func() {
 		var buf bytes.Buffer
-		io.Copy(&buf, r)
+		// TODO: handle error
+		_, _ = io.Copy(&buf, r)
 		outC <- buf.String()
 	}()
 
 	// restore original state
-	w.Close()
+	// TODO: handle error
+	_ = w.Close()
 	os.Stdout = oldOut
 	out := <-outC
 

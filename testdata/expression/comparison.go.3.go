@@ -18,7 +18,7 @@ func main() {
 		fmt.Printf("1 is less than or equal to 2!")
 	}
 
-	if 1 >= 2 {
+	if 1 > 2 {
 		fmt.Printf("1 is greater than or equal to 2!")
 	}
 

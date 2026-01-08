@@ -36,24 +36,22 @@ install:
 .PHONY: install
 
 install-dependencies:
-	go mod vendor
-	go test -i -v $(PKG)/...
+	go get
 .PHONY: install-dependencies
 
 install-tools:
 	# generation
-	go get golang.org/x/tools/cmd/stringer
+	go install golang.org/x/tools/cmd/stringer
 
 	# linting
-	go get golang.org/x/lint/golint/...
-	go get github.com/kisielk/errcheck/...
-	go get honnef.co/go/tools/...
+	go install golang.org/x/lint/golint@latest
+	go install github.com/kisielk/errcheck@latest
+	go install honnef.co/go/tools/cmd/staticcheck@latest
 
 	# code coverage
-	go get golang.org/x/tools/cmd/cover
-	go get github.com/onsi/ginkgo/ginkgo/...
-	go get github.com/modocache/gover/...
-	go get github.com/mattn/goveralls/...
+	go install github.com/onsi/ginkgo/ginkgo@latest
+	go install github.com/modocache/gover@latest
+	go install github.com/mattn/goveralls@latest
 .PHONY: install-tools
 
 lint:

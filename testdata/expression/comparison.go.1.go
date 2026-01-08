@@ -10,7 +10,7 @@ func main() {
 		fmt.Printf("1 is greater than 2!")
 	}
 
-	if 1 < 2 {
+	if 1 <= 2 {
 		fmt.Printf("1 is less than 2!")
 	}
 

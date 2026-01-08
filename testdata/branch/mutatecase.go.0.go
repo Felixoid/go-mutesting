@@ -11,12 +11,13 @@ func main() {
 	i := 1
 
 	for i != 4 {
-		if i >= 1 && i <= 1 {
-			fmt.Println(i)
-		} else if (i >= 2 && i <= 2) || i*1 == 1+1 {
+		switch {
+		case i == 1:
+			_, _ = fmt.Println, i
+		case i == 2:
 			fmt.Println(i * 2)
-		} else {
-
+		default:
+			fmt.Println(i * 3)
 		}
 
 		i++

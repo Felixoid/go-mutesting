@@ -45,7 +45,7 @@ func MutatorRemoveStatement(pkg *types.Package, info *types.Info, node ast.Node)
 	// Since we only target AST leaves here, all isolated panics that are nested in conditionals
 	// are still included in mutations in earlier conditional mutations (which run before statement
 	// mutations), and only those that are nested in error checks are filtered (this is due to an
-	// AST quirk where it does not treat error check panics as conditionals and instead directly 
+	// AST quirk where it does not treat error check panics as conditionals and instead directly
 	// labels them as statements).
 	if len(l) == 1 {
 		if containsPanic := strings.Contains(mutesting.GetNodeASTString(node), "panic"); containsPanic {

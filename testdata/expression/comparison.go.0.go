@@ -6,7 +6,7 @@ package main
 import "fmt"
 
 func main() {
-	if 1 > 2 {
+	if 1 >= 2 {
 		fmt.Printf("1 is greater than 2!")
 	}
 

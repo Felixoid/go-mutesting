@@ -46,7 +46,7 @@ func foo() int {
 	}
 
 	var x = 0
-	x++
+	_ = x
 
 	return n
 }

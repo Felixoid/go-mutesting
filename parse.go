@@ -7,7 +7,7 @@ import (
 	"go/parser"
 	"go/token"
 	"go/types"
-	"io/ioutil"
+	"os"
 	"path/filepath"
 
 	"golang.org/x/tools/go/packages"
@@ -16,7 +16,7 @@ import (
 // ParseFile parses the content of the given file and returns the corresponding ast.File node and its file set for positional information.
 // If a fatal error is encountered the error return argument is not nil.
 func ParseFile(file string) (*ast.File, *token.FileSet, error) {
-	data, err := ioutil.ReadFile(file)
+	data, err := os.ReadFile(file)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -26,7 +26,7 @@ func ParseFile(file string) (*ast.File, *token.FileSet, error) {
 
 // ParseSource parses the given source and returns the corresponding ast.File node and its file set for positional information.
 // If a fatal error is encountered the error return argument is not nil.
-func ParseSource(data interface{}) (*ast.File, *token.FileSet, error) {
+func ParseSource(data any) (*ast.File, *token.FileSet, error) {
 	fset := token.NewFileSet()
 
 	src, err := parser.ParseFile(fset, "", data, parser.ParseComments|parser.AllErrors)

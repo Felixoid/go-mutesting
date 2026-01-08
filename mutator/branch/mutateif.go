@@ -23,7 +23,7 @@ func MutatorIf(pkg *types.Package, info *types.Info, node ast.Node) []mutator.Mu
 	}
 
 	old := n.Body.List
-	
+
 	// We filter conditionals that take the form `err != nil` { return }, since
 	// these mutations are almost always false positives and make up a significant
 	// portion of the noise in mutation testing results.
@@ -36,7 +36,7 @@ func MutatorIf(pkg *types.Package, info *types.Info, node ast.Node) []mutator.Mu
 	if containsErr && containsNilCheck && len(n.Body.List) == 1 {
 		return nil
 	}
-	
+
 	return []mutator.Mutation{
 		{
 			Change: func() {

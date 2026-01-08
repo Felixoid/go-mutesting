@@ -40,7 +40,8 @@ func foo() int {
 	case n > 20:
 		n--
 	default:
-		n = 0
+		_ = n
+
 		fmt.Println(n)
 		func() {}()
 	}
